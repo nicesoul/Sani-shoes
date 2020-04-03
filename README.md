@@ -6,3 +6,5 @@ https://www.instagram.com/littlebird.shoes/
 
 
 created with Love for all Lovers :)
+
+![Baby shoes photo](/img/main_photo.jpg)

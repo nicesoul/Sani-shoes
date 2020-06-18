@@ -11,7 +11,7 @@
 // 
 // also I need to implement a price and total as well.
 // 
-var itemNames = ["Golden beige","Shiny golden","Pixy beige","Browny orange","Pinky brown","Dark brown","Cloudy grey","Browny aquamarine","Blacky brown","Heart"]
+var itemNames = ["Golden_beige","Shiny_golden","Pixy_beige","Browny_orange","Pinky_brown","Dark_brown","Cloudy_grey","Browny_aquamarine","Blacky_brown","Heart"]
 const main = document.querySelector("#main");
 const cart = document.querySelector('#rightnav');
 // var cartItems = new Set; // let's try work with Set? = NO )))
@@ -38,7 +38,7 @@ function EventListeners() { // as we have many buttons, we should add EventListe
 function addToCartFunc() {
     imgSrc = event.target.parentElement.parentElement.childNodes[2].firstChild.src;
     cartItemName = event.target.parentElement.parentElement.childNodes[0].childNodes[0].nodeValue;
-    // cartprise = event.target. 
+    cartItemName = cartItemName.replace(/\s/g, "_")
     if (!cartItems.includes(cartItemName)){
     makeCartItem(cartItemName);
     cartItems.push(cartItemName);

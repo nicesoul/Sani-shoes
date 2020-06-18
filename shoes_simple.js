@@ -1,101 +1,81 @@
 // I decided to leave top comment to report current status not to forget the plan and to recover working process easier.
 
-// 1   For now I am trying to make a shopping basket = uploadCart().
-//     I already did manage to add only one copy of item into the local storage
-// 2   Now I have to add only one copy to #rightnav and increase counter.
-// 3   also I need to implement a price and count it as well.
+// 17 June 2020 = this should be done till 20 June 2020
 
-//line 12+, 27+, lines 80+
+// function uploadcart() Доробити! 
+// Налаштування шрифту - Consolas розмір 16, вага 200, інтервал 16, відчувається трохи сплюснутим. Хоча якщо у два віконця працювати, то добре так видно. Все таки зробив інтервал 19, бо давить :)
 
+// so not to make another html I will assume that we got only 1 copy of each item (I think it's true anyway)
+// But I have to change HTML *(((((SAD))))) => 16:52 Ok, so it took a day to implement.  (((MAD)))
+// I already did manage to add only one copy of item into the local storage and #rightnow
+// 
+// also I need to implement a price and total as well.
+// 
+var itemNames = ["Golden beige","Shiny golden","Pixy beige","Browny orange","Pinky brown","Dark brown","Cloudy grey","Browny aquamarine","Blacky brown","Heart"]
 const main = document.querySelector("#main");
 const cart = document.querySelector('#rightnav');
-var counter = 0;
-// cartItems is a global array for localStorage
-EventListeners();
-uploadcart();
-// as we have many buttons, we should add EventListener to all of them
+// var cartItems = new Set; // let's try work with Set? = NO )))
+var cartItems = []; // cartItems is a global array for localStorage
 
-function EventListeners() {
-    const addToCartBtn = document.querySelectorAll(".addtocart");
-    const removeFromCartBtn = document.querySelectorAll(".removefromcart");
+uploadcart();
+EventListeners();
+itemNames.forEach(shoe => compareRight(shoe));
+EventListeners(); // because of my weird style this function should be called twice, sorry )
+ 
+// I Want to refactor it, giving only one event-listener to the html body
+function EventListeners() { // as we have many buttons, we should add EventListener to all of them
+    const addToCartBtnNode = document.querySelectorAll(".addtocart");
+    const addToCartBtn = [...addToCartBtnNode]
+    const removeFromCartBtnNode = document.querySelectorAll(".removefromcart");
+    const removeFromCartBtn = [...removeFromCartBtnNode]
     addToCartBtn.forEach((btn) => {
         btn.addEventListener("click", addToCartFunc);
     });
     removeFromCartBtn.forEach((btn) => {
         btn.addEventListener("click", removeFromCart);
-    });
-    cartItem = document.querySelectorAll('.shoes_small');
-    cartItemCount = cartItem.length;
+    })
 }
-
 function addToCartFunc() {
-    imgSrc = event.target.parentElement.parentElement.childNodes[1].firstChild.src;
-    cartItemName = event.target.parentElement.parentElement.childNodes[0].innerText;
-
-    if (localStorage.getItem('cartItems') == null) {
-        cartItems = [];
-    } else {
-        cartItems = JSON.parse(localStorage.getItem('cartItems'));
-    };
-
-    if (cartItems.includes(cartItemName)) {
-        console.log('yes'); let a = counter+1;
-        console.log('a=',a);
-        makeCartItem(a);
-    } else {
-        console.log('else');
-        makeCartItem();
-    }
-
+    imgSrc = event.target.parentElement.parentElement.childNodes[2].firstChild.src;
+    cartItemName = event.target.parentElement.parentElement.childNodes[0].childNodes[0].nodeValue;
+    // cartprise = event.target. 
+    if (!cartItems.includes(cartItemName)){
+    makeCartItem(cartItemName);
     cartItems.push(cartItemName);
-    cartItems = [...new Set(cartItems)];
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
-    // console.log(42, cartItems, cartItemName);
-    EventListeners(); // add EventListener to new button
-
+    EventListeners();} // add EventListener to new button     
 }
-// function increaseItems(){
-// }
-
 function uploadcart() {
-    console.log('i want to upload the cart');
-    // for (var i = 0; i < BBB.length; i++) {
-    //     if (BBB[i] === id) {BBB.splice(i, 1);}
-};
-
+    if  (localStorage.getItem('cartItems') != null || localStorage.getItem('cartItems') != undefined)
+    {cartItems = JSON.parse(localStorage.getItem('cartItems'))}
+}
+function compareRight(arg){
+    if (cartItems.includes(arg))
+    {let found = document.getElementById(arg).click()
+    makeCartItem(arg)}
+}
 function removeFromCart() {
     event.target.parentElement.remove();
     id = event.target.parentElement.id;
-    for (var i = 0; i < cartItems.length; i++) {
-        if (cartItems[i] === id) {
-            cartItems.splice(i, 1);
+    for (var i = cartItems.length -1; i >=0 ; i--) {
+        if (cartItems[i] === id) {cartItems.splice(i, 1);}}
             localStorage.setItem('cartItems', JSON.stringify(cartItems));
-        }
     }
-}
-
 function createElementFunc(tagName) {
     return document.createElement(tagName);
 }
-
-function makeCartItem(arg) { // i made it with more simple structure
-    console.log('func is called');
+function makeCartItem(cartItemName) { // i made it with more simple structure    
     const cartItemDiv = createElementFunc('div');
     cartItemDiv.className = "shoes_small";
     cartItemDiv.id = cartItemName;
+    // cartItemDiv.innerText = cartItemName;
     const img = createElementFunc('img');
     img.src = imgSrc;
-
-    const itemCounterSmall = createElementFunc('span');
-    itemCounterSmall.innerText = arg;
-    cartItemDiv.appendChild(itemCounterSmall);
-
     const button = createElementFunc('button');
     button.className = 'removefromcart';
     button.innerHTML = '&#10799';
     cartItemDiv.appendChild(img);
     cartItemDiv.appendChild(button);
-
     cart.appendChild(cartItemDiv);
 }
 // ======================  END OF FINE PART

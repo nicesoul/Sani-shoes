@@ -1,160 +1,41 @@
-* {
-    box-sizing: border-box;
-    border-radius: 4px;
-}
-body {
-    /* width: 98vw;
-    margin: 0 auto; */
-    display: grid;
-    grid-template-columns: 10vw 1fr 10vw;
-    /* grid-template-rows: 5vh 1fr 5vh;  */
-    grid-template-areas: 
-    "hd hd hd"
-    "ln mn rn"
-    "ft ft ft"; 
-}
-header {
-    grid-area: hd;
-    background-color: #fff0f5;
-    /* font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 200))); */
-    font-size: calc(1vw + 14px);
-    /* font-size: 14px; */
-}
-footer {
-    grid-area: ft;
-    background-color: lavenderblush;
-    font-size: calc(1vw + 14px);
-}
-header, footer, #leftnav, #rightnav {
-    margin: 10px;
-}
-#leftnav {
-    grid-area: ln;
-    background-color: khaki;
-}
-#rightnav {
-    grid-area: rn;
-    background-color: lightgreen;
-    border: 1 px solid #777;
-    /* display: flex;
-    flex-direction: column; */
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-auto-rows: min-content;
-}
-.shoes img, .shoes_small img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: 50% 50%;
-}
-.shoes_small img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: 50% 50%;
-}
-#cartlogo{
-    font-size: 5vmin;
-}
-
-.shoes {
-    border: 2px solid #aca;
-    color: #acf;
-}
-.shoes:nth-child(even) {
-    background-color: rgb(238, 255, 215);
-    color: #acf;
-}
-#main {
-    /* margin: 10px; */
-    margin-top: 0px;
-    margin-bottom: 0px;
-    margin-left: 10px;
-    margin-right: 10px;
-    grid-area: mn;
-    padding: 20px;
-    display: grid;
-    grid-auto-flow: dense;
-    grid-gap: 1vmin;
-    grid-template-columns: repeat(5, 1fr);
-    grid-auto-rows: min-content;
-    /* grid-template-rows: DONT USE IT! */
-    border: 1px solid #000;
-    border-radius: 5px;
-    /* background-color: rgb(219, 255, 253); */
-    
-}
-p{
-    margin: 0 auto;
-    padding: 0;
-    display: inline-block;
-}
-.addtocart{
-    background-color: hsl(120, 70%, 85%);
-}
-.removefromcart{
-    background-color: khaki;
-    position: relative;
-    bottom: 20px;
-}
-#expandcart{
-    display: none;
-}
-
-
-    
+*{margin:0;padding:0;box-sizing:border-box;border-radius:5px;font-family:Arial,Helvetica,sans-serif}
+body{display:flex;min-width:100vw;min-height:100vh}
+.globalWrapper{display:grid;grid-template-columns:10vw 1fr 10vw;grid-template-areas:"hd hd hd" "ln mn rn" "ft ft ft"}
+header{grid-area:hd;font-size:calc(1vw + 14px)}
+footer{grid-area:ft;font-size:calc(1vw + 14px)}
+#leftnav,#main,#rightnav,footer,header{margin:8px;border:4px solid ivory;border-radius:4px;box-shadow:0 0 0 2px #f1e497}
+#leftnav{grid-area:ln}
+#rightnav{grid-area:rn;display:grid;grid-template-columns:50% 50%;grid-auto-rows:min-content}
+.shoes img,.shoes_small img{width:100%;height:100%;object-fit:cover;object-position:50% 50%}
+.shoes_small img{width:100%;height:100%;object-fit:cover;object-position:50% 50%}
+#cartlogo{font-size:5vmin}
+.shoes{display:flex;flex-direction:column;justify-content:space-evenly;border:1px solid #f1e497;color:#410000;background-color:#fff;font-size:calc(.9vmin + 10px)}
+.shoes{padding:5px}
+.shoeName{display:inline-block;max-width:18ch;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.shoes span:last-child{margin-left:10px}
+#main{grid-area:mn;padding:20px;display:grid;grid-auto-flow:dense;grid-gap:1vmin;grid-template-columns:repeat(5,1fr);grid-auto-rows:min-content}
+p{margin:0 auto;padding:0;display:inline-block}
+.addtocart{background-color:#fff6c1;display:inline-block;padding:2px}
+.addtocart:focus,.addtocart:hover{background-color:gold;box-shadow:0 0 0 2px gold}
+.removefromcart:focus,.removefromcart:hover{background-color:gold;box-shadow:0 0 0 2px gold}
+.removefromcart{background-color:khaki;position:relative;bottom:25px}
+#expandcart{display:none}
+@media screen and (max-width:1280px){
+.globalWrapper{grid-template-areas:"hd hd hd" "rn rn rn" "ln mn mn" "ln mn mn" "ln mn mn" "ft ft ft"}
+#main{grid-template-columns:repeat(4,1fr)}
+#rightnav{grid-template-columns:repeat(11,1fr)}
+#cartword{display:none}
+.shoes_small:nth-child(n+13){display:none}
+#expandcart{display:inline}}
 @media screen and (max-width:900px){
-    body {
-        grid-template-areas: 
-        "hd hd hd"
-        "rn rn rn"
-        "mn mn mn"
-        "ln ln ln"
-        "ft ft ft"; 
-    }
-    #main{
-        grid-template-columns: repeat(4, 1fr);
-    }
-    #rightnav{
-        grid-template-columns: repeat(10, 1fr);
-    }    #cartword{
-        display:none;
-    }
-    .shoes_small:nth-child(n+12){
-        display: none;
-    }
-    #expandcart{
-        display: inline;
-    }
-}
-@media screen and (max-width:600px){
-    #main{
-        grid-template-columns: repeat(3, 1fr);
-    }
-    #rightnav{
-        grid-template-columns: repeat(7, 1fr);
-    }
-    .shoes_small:nth-child(n+9){
-        display: none;
-    }
-
-}
-@media screen and (max-width:450px){
-    #main{
-        grid-template-columns: repeat(2, 1fr);
-    }
-    #rightnav{
-        grid-template-columns: repeat(5, 1fr);
-    }
-    .shoes_small:nth-child(n+7){
-        display: none;
-    }
-}
-@media screen and (max-width:300px){
-    #main{
-        grid-template-columns: repeat(1, 1fr);
-    }
-}
-
-/* NORMALISE     ???????????*/
+.globalWrapper{grid-template-areas:"hd hd hd" "rn rn rn" "mn mn mn" "mn mn mn" "ln ln ln" "ft ft ft"}}
+@media screen and (max-width:768px){
+#main{grid-template-columns:repeat(3,1fr)}
+#rightnav{grid-template-columns:repeat(6,1fr)}
+.shoes_small:nth-child(n+8){display:none}}
+@media screen and (max-width:550px){
+#main{grid-template-columns:repeat(2,1fr)}
+#rightnav{grid-template-columns:repeat(4,1fr)}
+.shoes_small:nth-child(n+6){display:none}}
+@media screen and (max-width:340px){
+#main{grid-template-columns:repeat(1,1fr)}}

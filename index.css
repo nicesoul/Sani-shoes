@@ -3,7 +3,7 @@
 /* body{display:flex;min-width:100vw;min-height:100vh}  */
 .globalWrapper{display:grid;grid-template-columns:10vw 1fr 10vw 10vw; grid-template-rows: 25vh 1fr; grid-template-areas:"hd hd hd hd" "ln mn rn ." "ft ft ft ft"; }
 header{display:flex; flex-direction: column; justify-content: space-around;  grid-area:hd;font-size:calc(1vw + 14px);
-     text-align: center; background-image: url(../img/top_back.jpg); background-size: cover; color: white;}
+     text-align: center; background-image: url(./img/top_back.jpg); background-size: cover; color: white;}
 header > p{ padding: 10px; padding-bottom: 12px; color: black; background-color: rgba(255, 255, 255, 0.5);}
 footer{grid-area:ft;font-size:calc(1vw + 14px); text-align: center;}
 footer > h3, footer > p{ font-size: large;}

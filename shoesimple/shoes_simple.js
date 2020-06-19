@@ -14,7 +14,9 @@
 var itemNames = ["Golden_beige","Shiny_golden","Pixy_beige","Browny_orange","Pinky_brown","Dark_brown","Cloudy_grey","Browny_aquamarine","Blacky_brown","Heart"]
 const main = document.querySelector("#main");
 const cart = document.querySelector('#rightnav');
-const cartprice = document.querySelector('#cartword');
+const cartprice = document.querySelector('#cartprice');
+const clearCart = document.querySelector('#clearCart').addEventListener('click', clearCartFunc);
+const buyCart = document.querySelector('#buyCart').addEventListener('click', buyCartFunc);
 // var cartItems = new Set; // let's try work with Set? = NO )))
 var cartItems = []; // cartItems is a global array for localStorage
 var cartItemName, imgSrc, price, id;
@@ -107,3 +109,15 @@ function updatePrice(target,price){
     }
 }
 // ======================  END OF FINE PART
+
+function buyCartFunc (){
+    alert('thank you for your purchase')
+    clearCartFunc()
+}
+function clearCartFunc(){
+    const cart_DOM_Items = document.querySelectorAll('.shoes_small')
+    cart_DOM_Items.forEach(node => node.remove())
+    cartItems = []
+    localStorage.setItem('cartItems', JSON.stringify(cartItems))
+    cartprice.innerText = 0;
+}

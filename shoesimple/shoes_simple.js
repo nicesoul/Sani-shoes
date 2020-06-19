@@ -1,9 +1,21 @@
+// I decided to leave top comment to report current status not to forget the plan and to recover working process easier.
 
+// 17 June 2020 = this should be done till 20 June 2020
+
+// function uploadcart() Доробити! 
+// Налаштування шрифту - Consolas розмір 16, вага 200, інтервал 16, відчувається трохи сплюснутим. Хоча якщо у два віконця працювати, то добре так видно. Все таки зробив інтервал 19, бо давить :)
+
+// so not to make another html I will assume that we got only 1 copy of each item (I think it's true anyway)
+// But I have to change HTML *(((((SAD))))) => 16:52 Ok, so it took a day to implement.  (((MAD)))
+// I already did manage to add only one copy of item into the local storage and #rightnow
+// 
+// also I need to implement a price and total as well. Fuuuuuck! I was missing one '=' in IF statement = almost died debugging ))) 
+// 
 var itemNames = ["Golden_beige","Shiny_golden","Pixy_beige","Browny_orange","Pinky_brown","Dark_brown","Cloudy_grey","Browny_aquamarine","Blacky_brown","Heart"]
 const main = document.querySelector("#main");
 const cart = document.querySelector('#rightnav');
 const cartprice = document.querySelector('#cartword');
-
+// var cartItems = new Set; // let's try work with Set? = NO )))
 var cartItems = []; // cartItems is a global array for localStorage
 var cartItemName, imgSrc, price, id;
 
@@ -32,6 +44,7 @@ function addToCartFunc() {
     console.log(event.target.parentElement.childNodes[2].innerText);
     priceString = event.target.parentElement.childNodes[2].innerText
     price = parseFloat(priceString.replace(/\D/g,''))
+    // if (typeof(price)!=Number){price=0};
     // typeof(price) === NaN ? price : price = 0; // did you know that ternany operator can only have one "return type"?
     target = event.target.className;
     

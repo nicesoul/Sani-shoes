@@ -5,8 +5,9 @@ Update coming soon.
 
 To make it work you need .env file that has API keys listed inside like:
 
-STRIPE_PUBLIC_KEY=<yourapiPUBLICkey>
-STRIPE_SECRET_KEY=<yourapiSECRETkey>
+STRIPE_PUBLIC_KEY=publickey
+
+STRIPE_SECRET_KEY=secretkey
 
 Get your keys at https://dashboard.stripe.com/test/developers.
 

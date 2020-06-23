@@ -1,5 +1,23 @@
-// I decided to leave top comment to report current status not to forget the plan and to recover working process easier.
+<% items.shoes.forEach(function(leg) { %> 
+    <div class="shoes" data-leg-id="<%= leg.id %> ">
+    <div class="shoeName"><%= leg.name %> </div>
+    <div><img src="img/<%= leg.imgName %>" alt="BABY LEATHER SHOES Golden beige"> </div>
+    <div class="cardBottom">
+    <button class="addtocart" id="Golden_beige"> Add to cart</button>
+    <span class="price"><%= leg.price /100 %>  €</span></div></div><% }) %>
+
+<!-- 
+
+    JS to save 
+
+
+    // I decided to leave top comment to report current status not to forget the plan and to recover working process easier.
 // TOP comment )))
+
+// let's try to read array from a file
+// const express = require('express');
+// const fs = require('fs');
+// itemNames = fs.readFile('../items.json');
 
 // this itemNames should be collected from HTML DOM, not hardcoded, right?
 var itemNames = ["Golden_beige","Shiny_golden","Pixy_beige","Browny_orange","Pinky_brown","Dark_brown","Cloudy_grey","Browny_aquamarine","Blacky_brown","Heart"]
@@ -10,7 +28,7 @@ const clearCart = document.querySelector('#clearCart').addEventListener('click',
 const buyCart = document.querySelector('#buyCart').addEventListener('click', buyCartFunc);
 // var cartItems = new Set; // let's try work with Set? = NO )))
 var cartItems = []; // cartItems is a global array for localStorage
-var cartItemName, imgSrc, price, id, priceString, target;
+var cartItemName, imgSrc, price, id, priceString, target, found;
 
 uploadcart(); // get itemlist from local storage
 EventListeners(); // add event listeners to buttons ADD to cart and REMOVE from cart
@@ -31,13 +49,14 @@ function EventListeners() { // as we have many buttons, we should add EventListe
     })
 }
 function addToCartFunc() {
-    imgSrc = event.target.parentElement.parentElement.childNodes[2].firstChild.src;
-    cartItemName = event.target.parentElement.parentElement.childNodes[0].childNodes[0].nodeValue;
+    // console.log('old',event.target.parentElement.parentElement.childNodes[2]);
+    // console.log('new',event.target.parentElement.parentElement.childNodes[3].firstChild.src);
+    
+    imgSrc = event.target.parentElement.parentElement.childNodes[3].firstChild.src;
+    cartItemName = event.target.parentElement.parentElement.childNodes[1].childNodes[0].nodeValue;
     cartItemName = cartItemName.replace(/\s/g, "_");
-    console.log(event.target.parentElement.childNodes[2].innerText);
-    priceString = event.target.parentElement.childNodes[2].innerText
+    priceString = event.target.parentElement.childNodes[3].innerText
     price = parseFloat(priceString.replace(/\D/g,''))
-    // typeof(price) === NaN ? price : price = 0; // did you know that ternany operator can only have one "return type"?
     target = event.target.className;
     
     if (!cartItems.includes(cartItemName)){
@@ -52,9 +71,12 @@ function uploadcart() {
     {cartItems = JSON.parse(localStorage.getItem('cartItems'))}
 }
 function compareRight(arg){
-    if (cartItems.includes(arg))
-    {let found = document.getElementById(arg);found.click()
-    priceString = found.parentElement.childNodes[2].innerText
+    if (cartItems.includes(arg)){ 
+        found = document.getElementById(arg);
+        found.click()
+    // console.log(found.parentElement.childNodes[3].innerText)
+    priceString = found.parentElement.childNodes[3].innerText
+    
     price = parseFloat(priceString.replace(/\D/g,''))
     makeCartItem(arg,price); target = found.className;
     updatePrice(target,price)
@@ -64,8 +86,10 @@ function removeFromCart() {
     target = event.target.parentElement.childNodes[1].className;
     price = parseFloat(event.target.parentElement.childNodes[2].className)
     updatePrice(target,price);
-    event.target.parentElement.remove();
     id = event.target.parentElement.id;
+    console.log(id)
+    event.target.parentElement.remove();
+    
     for (var i = cartItems.length -1; i >=0 ; i--) {
         if (cartItems[i] === id) {cartItems.splice(i, 1);}}
             localStorage.setItem('cartItems', JSON.stringify(cartItems));
@@ -114,3 +138,6 @@ function clearCartFunc(){ if (cartprice.innerText != '0'){
 }}
 
 // ======================  END OF FINE PART
+
+// module.exports = shoes_simple_copy;
+ -->

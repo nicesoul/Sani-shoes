@@ -1,0 +1,21 @@
+{
+  "name": "sani-shoes",
+  "version": "1.0.0",
+  "description": "Studing project for all the lovers",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "test"
+  },
+  "author": "nicesoul",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.3",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4",
+    "stripe": "^8.64.0"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0"
+  }
+}

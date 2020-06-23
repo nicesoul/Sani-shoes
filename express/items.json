@@ -1,0 +1,63 @@
+{
+  "shoes": [
+    {
+      "id": 1,
+      "name": "Golden beige",
+      "price": 2500,
+      "imgName": "Baby_leather_shoes_000.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Shiny golden",
+      "price": 2000,
+      "imgName": "Baby_leather_shoes_001.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Pixy beige",
+      "price": 3000,
+      "imgName": "Baby_leather_shoes_002.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Browny orange",
+      "price": 3500,
+      "imgName": "Baby_leather_shoes_003.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Pinky brown",
+      "price": 3000,
+      "imgName": "Baby_leather_shoes_004.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Dark brown",
+      "price": 3200,
+      "imgName": "Baby_leather_shoes_005.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Cloudy grey",
+      "price": 3200,
+      "imgName": "Baby_leather_shoes_006.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Browny aquamarine",
+      "price": 3500,
+      "imgName": "Baby_leather_shoes_007.jpg"
+    },
+    {
+      "id": 9,
+      "name": "Blacky brown",
+      "price": 3500,
+      "imgName": "Baby_leather_shoes_008.jpg"
+    },
+    {
+      "id": 10,
+      "name": "Heart",
+      "price": 100,
+      "imgName": "main_photo.jpg"
+    }
+  ]}

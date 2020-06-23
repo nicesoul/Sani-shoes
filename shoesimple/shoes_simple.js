@@ -1,16 +1,7 @@
 // I decided to leave top comment to report current status not to forget the plan and to recover working process easier.
+// TOP comment )))
 
-// 17 June 2020 = this should be done till 20 June 2020
-
-// function uploadcart() Доробити! 
-// Налаштування шрифту - Consolas розмір 16, вага 200, інтервал 16, відчувається трохи сплюснутим. Хоча якщо у два віконця працювати, то добре так видно. Все таки зробив інтервал 19, бо давить :)
-
-// so not to make another html I will assume that we got only 1 copy of each item (I think it's true anyway)
-// But I have to change HTML *(((((SAD))))) => 16:52 Ok, so it took a day to implement.  (((MAD)))
-// I already did manage to add only one copy of item into the local storage and #rightnow
-// 
-// also I need to implement a price and total as well. Fuuuuuck! I was missing one '=' in IF statement = almost died debugging ))) 
-// 
+// this itemNames should be collected from HTML DOM, not hardcoded, right?
 var itemNames = ["Golden_beige","Shiny_golden","Pixy_beige","Browny_orange","Pinky_brown","Dark_brown","Cloudy_grey","Browny_aquamarine","Blacky_brown","Heart"]
 const main = document.querySelector("#main");
 const cart = document.querySelector('#rightnav');
@@ -19,17 +10,17 @@ const clearCart = document.querySelector('#clearCart').addEventListener('click',
 const buyCart = document.querySelector('#buyCart').addEventListener('click', buyCartFunc);
 // var cartItems = new Set; // let's try work with Set? = NO )))
 var cartItems = []; // cartItems is a global array for localStorage
-var cartItemName, imgSrc, price, id;
+var cartItemName, imgSrc, price, id, priceString, target;
 
-uploadcart();
-EventListeners();
-itemNames.forEach(shoe => compareRight(shoe));
-EventListeners(); // because of my weird style this function should be called twice, sorry )
- 
+uploadcart(); // get itemlist from local storage
+EventListeners(); // add event listeners to buttons ADD to cart and REMOVE from cart
+itemNames.forEach(shoe => compareRight(shoe)); // check if any items from local storage match shoe's names (hardcoded for now) and add to cart using click() on ADD btn
+EventListeners(); // because of my weird style this function should be called twice, sorry ) // add event listener to newly created items REMOVE buttons in a cart
+
 // I Want to refactor it, giving only one event-listener to the html body
 function EventListeners() { // as we have many buttons, we should add EventListener to all of them
     const addToCartBtnNode = document.querySelectorAll(".addtocart");
-    const addToCartBtn = [...addToCartBtnNode]
+    const addToCartBtn = [...addToCartBtnNode] // I created an array but don't use it yet differently yet.
     const removeFromCartBtnNode = document.querySelectorAll(".removefromcart");
     const removeFromCartBtn = [...removeFromCartBtnNode]
     addToCartBtn.forEach((btn) => {
@@ -46,7 +37,6 @@ function addToCartFunc() {
     console.log(event.target.parentElement.childNodes[2].innerText);
     priceString = event.target.parentElement.childNodes[2].innerText
     price = parseFloat(priceString.replace(/\D/g,''))
-    // if (typeof(price)!=Number){price=0};
     // typeof(price) === NaN ? price : price = 0; // did you know that ternany operator can only have one "return type"?
     target = event.target.className;
     
@@ -55,7 +45,7 @@ function addToCartFunc() {
     updatePrice(target,price);
     cartItems.push(cartItemName);
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
-    EventListeners();} // add EventListener to new button     
+    EventListeners();} // add EventListener to a new button     
 }
 function uploadcart() {
     if  (localStorage.getItem('cartItems') != null || localStorage.getItem('cartItems') != undefined)
@@ -64,7 +54,9 @@ function uploadcart() {
 function compareRight(arg){
     if (cartItems.includes(arg))
     {let found = document.getElementById(arg);found.click()
-    makeCartItem(arg); target = found.className;
+    priceString = found.parentElement.childNodes[2].innerText
+    price = parseFloat(priceString.replace(/\D/g,''))
+    makeCartItem(arg,price); target = found.className;
     updatePrice(target,price)
 }
 }
@@ -95,8 +87,7 @@ function makeCartItem(cartItemName,price) { // i made it with more simple struct
     cartItemDiv.appendChild(img);
     cartItemDiv.appendChild(button);
     cartItemDiv.appendChild(spanprice);
-    cart.appendChild(cartItemDiv);
-    
+    cart.appendChild(cartItemDiv);   
 }
 function updatePrice(target,price){
     let currentprice = parseFloat(cartprice.innerText);
@@ -108,16 +99,18 @@ function updatePrice(target,price){
         cartprice.innerText = currentprice;
     }
 }
-// ======================  END OF FINE PART
-
-function buyCartFunc (){
+function buyCartFunc (){if (cartprice.innerText != '0'){
+    console.log(cartprice.innerText)
     alert('thank you for your purchase')
-    clearCartFunc()
+    clearCartFunc()} 
+    // else (alert('the cart is empty. add some items first, please'))
 }
-function clearCartFunc(){
+function clearCartFunc(){ if (cartprice.innerText != '0'){
     const cart_DOM_Items = document.querySelectorAll('.shoes_small')
     cart_DOM_Items.forEach(node => node.remove())
     cartItems = []
     localStorage.setItem('cartItems', JSON.stringify(cartItems))
     cartprice.innerText = 0;
-}
+}}
+
+// ======================  END OF FINE PART

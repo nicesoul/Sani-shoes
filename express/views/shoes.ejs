@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Shoes By Sani - Baby leather shoes</title>
-    <link rel="stylesheet" href="shoes_simple.css">
+    <link rel="stylesheet" href="shoes_simple_copy.css">
+    <script src="https://checkout.stripe.com/checkout.js" defer></script>
+    <script> var stripePublicKey = '<%= stripePublicKey %>'</script>
 </head>
 
 <body>
@@ -25,8 +27,17 @@
     </nav>-->
     </nav> 
     <div class="container" id="main">
+
+        <% items.shoes.forEach(function(leg) { %> 
+            <div class="shoes" data-item-id="<%= leg.id %>">
+            <div class="shoeName"><%= leg.name %></div>
+            <div><img src="img/<%= leg.imgName %>" alt="BABY LEATHER SHOES Golden beige"></div>
+            <div class="cardBottom">
+            <button class="addtocart" id="<%= leg.name.replace(/\s/g, '_') %>">Add to cart</button>
+            <span class="price"><%= leg.price /100 %>  €</span></div></div><% }) %>
+            
     <!-- NO MORE than 18 Characters in a shoe name, PLEASE.  ISN't this STUPID?-->
-<div class="shoes"><div class="shoeName">Golden beige</div>           <div><img      src="../img/Baby_leather_shoes_000.jpg" alt="BABY LEATHER SHOES Golden beige">          </div> <div class="cardBottom"> <button class="addtocart" id="Golden_beige">     Add to cart</button><span class="price">25 €</span></div></div>
+<!-- <div class="shoes"><div class="shoeName">Golden beige</div>           <div><img      src="../img/Baby_leather_shoes_000.jpg" alt="BABY LEATHER SHOES Golden beige">          </div> <div class="cardBottom"> <button class="addtocart" id="Golden_beige">     Add to cart</button><span class="price">25 €</span></div></div>
 <div class="shoes"><div class="shoeName">Shiny golden</div>           <div><img      src="../img/Baby_leather_shoes_001.jpg" alt="BABY LEATHER SHOES Shiny golden">          </div> <div class="cardBottom"> <button class="addtocart" id="Shiny_golden">     Add to cart</button><span class="price">20 €</span></div></div>
 <div class="shoes"><div class="shoeName">Pixy beige</div>             <div><img        src="../img/Baby_leather_shoes_002.jpg" alt="BABY LEATHER SHOES Pixy beige">          </div> <div class="cardBottom"> <button class="addtocart" id="Pixy_beige">       Add to cart</button><span class="price">30 €</span></div></div>
 <div class="shoes"><div class="shoeName">Browny orange</div>          <div><img     src="../img/Baby_leather_shoes_003.jpg" alt="BABY LEATHER SHOES Browny orange">          </div> <div class="cardBottom"> <button class="addtocart" id="Browny_orange">    Add to cart</button><span class="price">35 €</span></div></div>
@@ -35,7 +46,7 @@
 <div class="shoes"><div class="shoeName">Cloudy grey</div>            <div><img       src="../img/Baby_leather_shoes_006.jpg" alt="BABY LEATHER SHOES Cloudy grey">          </div> <div class="cardBottom"> <button class="addtocart" id="Cloudy_grey">      Add to cart</button><span class="price">32 €</span></div></div>
 <div class="shoes"><div class="shoeName">Browny aquamarine</div>        <div><img    src="../img/Baby_leather_shoes_007.jpg" alt="BABY LEATHER SHOES Browny aquamarine">     </div> <div class="cardBottom"> <button class="addtocart" id="Browny_aquamarine">Add to cart</button><span class="price">35 €</span></div></div>
 <div class="shoes"><div class="shoeName">Blacky brown</div>           <div><img      src="../img/Baby_leather_shoes_008.jpg" alt="BABY LEATHER SHOES Blacky brown">          </div> <div class="cardBottom"> <button class="addtocart" id="Blacky_brown">     Add to cart</button><span class="price">35 €</span></div></div>
-<div class="shoes"><div class="shoeName">Heart</div>             <div><img        src="../img/main_photo.jpg"             alt="BABY LEATHER SHOES' Heart">              </div> <div class="cardBottom"> <button class="addtocart" id="Heart">            Add to cart</button><span class="price"> 1 :)  </span></div></div>
+<div class="shoes"><div class="shoeName">Heart</div>             <div><img        src="../img/main_photo.jpg"             alt="BABY LEATHER SHOES' Heart">              </div> <div class="cardBottom"> <button class="addtocart" id="Heart">            Add to cart</button><span class="price"> 1 :)  </span></div></div> -->
 
     </div> 
     
@@ -52,7 +63,7 @@
         <p> Exclusive leather shoes and other cute things for little ones ⭐️ Made in Ireland 🍀 Worldwide shipping 🌎</p></footer>
 
 </div>
-    <script src="shoes_simple.js"></script>
+    <script src="shoes_simple_copy.js" defer></script>
 </body>
 
 </html>

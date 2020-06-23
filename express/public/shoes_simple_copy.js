@@ -111,8 +111,8 @@ function updatePrice(target,price){
 }
 function buyCartFunc (){
     if (cartprice.innerText != '0'){
-        console.log(cartprice.innerText)
-        sstripeHandler.open({amount: cartprice})
+        let currentprice = parseFloat(cartprice.innerText)
+        sstripeHandler.open({amount: currentprice*100})
     }
 }
 function clearCartFunc(){ if (cartprice.innerText != '0'){

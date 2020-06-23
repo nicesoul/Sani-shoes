@@ -9,6 +9,8 @@ STRIPE_PUBLIC_KEY=publickey
 
 STRIPE_SECRET_KEY=secretkey
 
+To make a test payment use card number 4242 4242 4242 4242
+
 Get your keys at https://dashboard.stripe.com/test/developers.
 
 Don't forget to npm install )))) (stripe, express, dotenv, ejs)
